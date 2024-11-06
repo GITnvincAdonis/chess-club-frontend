@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { CardDemo } from "../ShadCNComponents/CardDemo";
+import MyNavBar from "../My Components/NavBar";
 
 export default function Homepage() {
   return (
     <>
+      <MyNavBar></MyNavBar>
       <div className="container lg:w-full  w-96 lg:px-5  flex flex-col items-center justify-center pt-5 mt-32 ">
         <div className="container lg:min-h-80 min-h-60 px-5 flex lg:flex-row flex-col items-center justify-between  ">
           <div>

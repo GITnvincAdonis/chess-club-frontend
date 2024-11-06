@@ -11,8 +11,10 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { MenuIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export function Drawer() {
+  const navigate = useNavigate();
   return (
     <div className="grid  lg:grid-cols-2 gap-2">
       <Sheet>
@@ -28,9 +30,32 @@ export function Drawer() {
           </SheetHeader>
 
           <SheetFooter>
-            <SheetClose asChild>
-              <Button type="submit">Back</Button>
-            </SheetClose>
+            <div className="w-full ">
+              <Button
+                onClick={() => {
+                  navigate("/ExecPage");
+                }}
+                variant="outline"
+                className={"w-full my-1"}
+              >
+                Executive Body
+              </Button>
+              <Button
+                onClick={() => {
+                  navigate("/home");
+                }}
+                variant="outline"
+                className={"w-full my-1"}
+              >
+                Chess Content
+              </Button>
+
+              <SheetClose asChild>
+                <Button className={"w-full"} type="submit">
+                  Back
+                </Button>
+              </SheetClose>
+            </div>
           </SheetFooter>
         </SheetContent>
       </Sheet>
