@@ -42,7 +42,7 @@ export function Drawer() {
               </Button>
               <Button
                 onClick={() => {
-                  navigate("/home");
+                  navigate("/");
                 }}
                 variant="outline"
                 className={"w-full my-1"}
