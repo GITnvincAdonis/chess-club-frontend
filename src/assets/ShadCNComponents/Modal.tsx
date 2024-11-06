@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { BellRing, ChevronRight } from "lucide-react";
+import { ChevronRight, TvIcon } from "lucide-react";
 
 export function Modal() {
   return (
@@ -20,15 +20,15 @@ export function Modal() {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
+          <DialogTitle>Proficiency Demographics</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+            Chess lessons sorted by player knowledge
           </DialogDescription>
         </DialogHeader>
         {options.map((item) => {
           return (
             <div className=" flex items-center space-x-4 rounded-md p-4 border click:border">
-              <BellRing />
+              <TvIcon />
               <div className="flex-1 space-y-1">
                 <p className="text-sm font-medium leading-none">{item.name}</p>
                 <p className="text-sm text-muted-foreground">{item.body}</p>
@@ -45,11 +45,11 @@ export function Modal() {
 
 const options = [
   {
-    name: "name 1",
-    body: "body text idjaca",
+    name: "Beginner Chess Content",
+    body: "Video lessons to help teach students fundamentals",
   },
   {
-    name: "name 2",
-    body: "body text idjaca",
+    name: "intermediate Training",
+    body: "More advanced piece play",
   },
 ];
