@@ -1,11 +1,11 @@
 export default App;
 
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Homepage from "./assets/Routes/Homepage";
 
 import ExecPage from "./assets/Routes/ExecPage";
-import { useEffect } from "react";
+
 
 function App() {
  
