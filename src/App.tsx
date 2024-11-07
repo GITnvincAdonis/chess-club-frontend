@@ -5,10 +5,9 @@ import "./App.css";
 import Homepage from "./assets/Routes/Homepage";
 
 import ExecPage from "./assets/Routes/ExecPage";
-
+import Events from "./assets/Routes/Events";
 
 function App() {
- 
   return (
     <>
       <Routes>
@@ -26,6 +25,14 @@ function App() {
             element={
               <>
                 <ExecPage />
+              </>
+            }
+          ></Route>
+          <Route
+            path={"/Events"}
+            element={
+              <>
+                <Events></Events>
               </>
             }
           ></Route>

@@ -11,15 +11,26 @@ import {
 import { Modal } from "./Modal";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export function CardDemo(props: {
-  card_body_text: any;
-  card_title: any;
-  card_desc: any;
+  card_body_text?: any;
+  card_title?: any;
+  card_desc?: any;
   className?: any;
   index?: number;
+  navigation_link?: string;
 }) {
-  const { className, card_title, card_body_text, card_desc, index } = props;
+  const {
+    className,
+    card_title,
+    card_body_text,
+    card_desc,
+    index,
+    navigation_link,
+  } = props;
+
+  const navigate = useNavigate();
   return (
     <Card className={cn("w-[380px]", className)}>
       <CardHeader>
@@ -34,7 +45,7 @@ export function CardDemo(props: {
       <CardFooter>
         {index && <Modal></Modal>}
         {!index && (
-          <Button>
+          <Button onClick={() => [navigate(`/${navigation_link}`)]}>
             <ChevronLeft /> Navigate
           </Button>
         )}

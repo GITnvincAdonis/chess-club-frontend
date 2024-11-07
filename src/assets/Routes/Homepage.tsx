@@ -31,6 +31,7 @@ export default function Homepage() {
                     }
                     card_title={item.card_title}
                     card_body_text={item.card_body}
+                    navigation_link={item.linkString}
                   ></CardDemo>
                 )}
                 {index == 2 && (
@@ -58,12 +59,14 @@ const Options = [
     card_desc: "A hub for all chess club events, tounaments, etc",
     card_body:
       "  officiis consectetur obcaecati ipsam ducimus nisi fugiat necessitatibus possimus minima voluptatem sit sequi harum quia.",
+    linkString: "Events",
   },
   {
     card_title: "Executive Body",
     card_desc: "Learn the represenatives (teacher and students) of the club",
     card_body:
       " Lorem consectetur  quidem aperiam laborumipsam ducimus nisi fugiat necessitatibus possimus minima voluptatem sit sequi harum quia.",
+    linkString: "ExecPage",
   },
   {
     card_title: "Chess Club Learning Content",

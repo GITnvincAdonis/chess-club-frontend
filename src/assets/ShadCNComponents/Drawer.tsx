@@ -41,6 +41,7 @@ export function Drawer() {
                 Executive Body
               </Button>
               <Button
+                disabled
                 onClick={() => {
                   navigate("/");
                 }}
@@ -48,6 +49,15 @@ export function Drawer() {
                 className={"w-full my-1"}
               >
                 Chess Content
+              </Button>
+              <Button
+                onClick={() => {
+                  navigate("/Events");
+                }}
+                variant="outline"
+                className={"w-full my-1"}
+              >
+                Event page
               </Button>
 
               <SheetClose asChild>
