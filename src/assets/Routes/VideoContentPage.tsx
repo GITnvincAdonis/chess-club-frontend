@@ -1,13 +1,16 @@
 import { Card, CardFooter } from "@/components/ui/card";
 import MyNavBar from "../My Components/NavBar";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import "@vidstack/react/player/styles/base.css";
+
+import "@vidstack/react/player/styles/default/theme.css";
+import "@vidstack/react/player/styles/default/layouts/audio.css";
+import "@vidstack/react/player/styles/default/layouts/video.css";
+import { MediaPlayer, MediaProvider } from "@vidstack/react";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  DefaultVideoLayout,
+  defaultLayoutIcons,
+} from "@vidstack/react/player/layouts/default";
 
 export default function VideoContentPage() {
   return (
@@ -36,13 +39,8 @@ export default function VideoContentPage() {
                         ></VideoContainer>
                       </button>
                     </DialogTrigger>
-                    <DialogContent className="sm:max-w-[825px] bg-black border-none aspect-video">
-                      <DialogHeader>
-                        <DialogTitle className="text-white">
-                          Video: {item.title}
-                        </DialogTitle>
-                        <DialogDescription>{item.desc}</DialogDescription>
-                      </DialogHeader>
+                    <DialogContent className="sm:max-w-[825px]  p-0 bg-black border-none aspect-video">
+                      <VideoComponent></VideoComponent>
                     </DialogContent>
                   </Dialog>
                 </>
@@ -70,7 +68,26 @@ function VideoContainer(props: { title: string; desc: string }) {
     </div>
   );
 }
-
+function VideoComponent() {
+  return (
+    <MediaPlayer
+      src="https://res.cloudinary.com/drh91o9pt/video/upload/v1730135802/y8iuviswnbl0epscimhb.mp4"
+      viewType="video"
+      streamType="on-demand"
+      logLevel="warn"
+      crossOrigin
+      playsInline
+      title="Placeholder title"
+      poster="https://files.vidstack.io/sprite-fight/poster.webp"
+    >
+      <MediaProvider></MediaProvider>
+      <DefaultVideoLayout
+        thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
+        icons={defaultLayoutIcons}
+      />
+    </MediaPlayer>
+  );
+}
 const videos = [
   {
     title: "Video one",
