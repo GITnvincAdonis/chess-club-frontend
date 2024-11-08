@@ -8,6 +8,8 @@
   line-height: 1.5;
   font-weight: 400;
 
+  scrollbar-gutter: stable both edges;
+  scrollbar-width:thin;
 
   --primary: 222.2 47.4% 11.2%;
   --primary-foreground: 210 40% 98%;

@@ -9,8 +9,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ChevronRight, TvIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-export function Modal() {
+export function HomepageModal() {
+  const navigate = useNavigate();
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -27,7 +29,12 @@ export function Modal() {
         </DialogHeader>
         {options.map((item) => {
           return (
-            <div className=" flex items-center space-x-4 rounded-md p-4 border click:border">
+            <div
+              onClick={() => {
+                navigate("/Videos");
+              }}
+              className=" flex items-center space-x-4 rounded-md p-4 border click:border"
+            >
               <TvIcon />
               <div className="flex-1 space-y-1">
                 <p className="text-sm font-medium leading-none">{item.name}</p>

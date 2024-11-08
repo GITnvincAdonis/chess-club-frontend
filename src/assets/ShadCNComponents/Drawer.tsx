@@ -41,9 +41,8 @@ export function Drawer() {
                 Executive Body
               </Button>
               <Button
-                disabled
                 onClick={() => {
-                  navigate("/");
+                  navigate("/Videos");
                 }}
                 variant="outline"
                 className={"w-full my-1"}

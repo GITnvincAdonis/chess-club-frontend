@@ -10,6 +10,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function Events() {
   return (
@@ -22,13 +23,13 @@ export default function Events() {
       <h1 className=" mb-[1rem] container lg:text-start text-center lg:text-3xl text-2xl font-medium">
         Chess Calender Events
       </h1>
-      <div className=" container h-screen flex mb-[10rem] lg:flex-row flex-col jusitfy-center items-center">
-        <div className="basis-1/4 border h-full lg:m-0 m-3 w-full">
+      <div className="container lg:h-[40rem] flex mb-[3rem] lg:flex-row flex-col jusitfy-center items-center">
+        <div className="basis-1/5 border h-[40rem] lg:me-2 m-3 w-full">
           <div className="lg:m-0 m-3 border text-center">PlaceHolder Text</div>
         </div>
-        <div className="lg:basis-1/2 basis-4/2  border lg:ms-2 lg:m-0 m-3 p-7 h-full flex flex-col items-center overflow-scroll">
+        <ScrollArea className="lg:basis-2/5  border lg:ms-2 lg:m-0 m-3 p-7 h-[40rem]  flex flex-col items-center ">
           <div className="flex w-full   items-center space-x-1">
-            <Input className="" placeholder="Search Events.." />
+            <Input className="m-1" placeholder="Search Events.." />
             <Button type="submit">
               <SearchIcon></SearchIcon>
             </Button>
@@ -44,8 +45,9 @@ export default function Events() {
               </div>
             );
           })}
-        </div>
-        <div className="basis-3/4 h-full lg:m-2 border m-3 w-full">
+        </ScrollArea>
+
+        <div className="basis-2/3 h-[40rem] lg:m-2 border m-3 w-full">
           <Card className="h-40 lg:m-0 m-3"></Card>
         </div>
       </div>

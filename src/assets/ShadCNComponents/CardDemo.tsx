@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Modal } from "./Modal";
+import { HomepageModal } from "./Modal";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +43,7 @@ export function CardDemo(props: {
         </div>
       </CardContent>
       <CardFooter>
-        {index && <Modal></Modal>}
+        {index && <HomepageModal></HomepageModal>}
         {!index && (
           <Button onClick={() => [navigate(`/${navigation_link}`)]}>
             <ChevronLeft /> Navigate

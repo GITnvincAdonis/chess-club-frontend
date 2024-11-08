@@ -6,6 +6,7 @@ import Homepage from "./assets/Routes/Homepage";
 
 import ExecPage from "./assets/Routes/ExecPage";
 import Events from "./assets/Routes/Events";
+import VideoContentPage from "./assets/Routes/VideoContentPage";
 
 function App() {
   return (
@@ -33,6 +34,14 @@ function App() {
             element={
               <>
                 <Events></Events>
+              </>
+            }
+          ></Route>
+          <Route
+            path={"/Videos"}
+            element={
+              <>
+                <VideoContentPage></VideoContentPage>
               </>
             }
           ></Route>

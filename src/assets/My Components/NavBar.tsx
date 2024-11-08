@@ -7,8 +7,8 @@ export default function MyNavBar() {
   const navigate = useNavigate();
   return (
     <>
-      <div className="z-50 w-full bg-translucent backdrop-blur-md p-5 fixed top-0">
-        <div className="container px-5 flex justify-between ">
+      <div className="z-50 w-full bg-translucent backdrop-blur-md  fixed top-0">
+        <div className=" container my-5 px-5 flex justify-between ">
           <div
             onClick={() => {
               navigate("/");
