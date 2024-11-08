@@ -81,10 +81,7 @@ function VideoComponent() {
       poster="https://files.vidstack.io/sprite-fight/poster.webp"
     >
       <MediaProvider></MediaProvider>
-      <DefaultVideoLayout
-        thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
-        icons={defaultLayoutIcons}
-      />
+      <DefaultVideoLayout icons={defaultLayoutIcons} />
     </MediaPlayer>
   );
 }
