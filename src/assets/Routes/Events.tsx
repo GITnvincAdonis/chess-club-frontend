@@ -11,33 +11,55 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "@/hooks/use-toast";
+import { useQuery } from "@tanstack/react-query";
+import { GetEvents, GetSearchedEvents } from "@/APIs/Api";
 
 type Pageditem = {
   title: string;
   desc: string;
   body: string;
+  date: string;
 };
-const EventArr = [
-  {
-    title: "Event one NAME",
-    desc: "Event number one auxilliary text in the array",
-    body: " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis expedita, laudantium totam recusandae nihil repudiandae voluptatem, aliquam porro alias quam, ex libero enim fuga. Ipsum obcaecati consequuntur quisquam rerum ipsam!",
-  },
-  {
-    title: "Event two name",
-    desc: "the auxillary fo rthe second event",
-    body: " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis expedita, laudantium totam recusandae nihil repudiandae voluptatem, aliquam porro alias quam, ex libero enim fuga. Ipsum obcaecati consequuntur quisquam rerum ipsam!",
-  },
-  {
-    title: "Event 3 nameOaod",
-    desc: "The third auxilliary tetxt for the event cards",
-    body: " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis expedita, laudantium totam recusandae nihil repudiandae voluptatem, aliquam porro alias quam, ex libero enim fuga. Ipsum obcaecati consequuntur quisquam rerum ipsam!",
-  },
-];
+
+type Event = {
+  event_name: string;
+  event_description: string;
+  event_details: string;
+  event_venue: string;
+  event_duration: string;
+};
 export default function Events() {
+  const [input, setInput] = useState("");
   const [pagedEvent, setEvent] = useState<Pageditem | undefined>(undefined);
+  const [fetchedEvents, SetFetchedEvents] = useState<Event[]>([]);
+
+  const { data, isError, error } = useQuery({
+    queryFn: async () => GetEvents(),
+    queryKey: ["events"],
+  });
+  useEffect(() => {
+    if (data) SetFetchedEvents(data);
+  }, [data]);
+
+  if (isError) console.log(error);
+
+  const {
+    data: SearchData,
+
+    isError: sErroring,
+    error: sError,
+  } = useQuery({
+    queryFn: async () => GetSearchedEvents(input),
+    queryKey: ["events", input],
+  });
+  useEffect(() => {
+    console.log(SearchData);
+  }, [SearchData]);
+
+  if (sErroring) console.log(sError);
+
   return (
     <>
       <MyNavBar></MyNavBar>
@@ -56,16 +78,24 @@ export default function Events() {
         <Card className="lg:basis-2/5  lg:ms-2 lg:m-0 m-3  h-[40rem]  flex flex-col items-center ">
           <ScrollArea className="p-7">
             <div className="flex w-full   items-center space-x-1">
-              <Input className="m-1" placeholder="Search Events.." />
+              <Input
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  setInput(e.target.value || "");
+                }}
+                className="m-1"
+                placeholder="Search Events.."
+              />
               <Button type="submit">
                 <SearchIcon></SearchIcon>
               </Button>
             </div>
-            {EventArr.map((item) => {
+            {fetchedEvents?.map((item) => {
               const eventParams: Pageditem = {
-                title: item.title,
-                desc: item.desc,
-                body: item.body,
+                date: item.event_duration.split("T")[0],
+                title: item.event_name,
+                desc: item.event_description,
+                body: item.event_details,
               };
               return (
                 <div
@@ -73,15 +103,16 @@ export default function Events() {
                   onClick={() => {
                     setEvent(eventParams);
                     toast({
-                      title: `Selected Event: ${item.title}`,
+                      title: `Selected Event: ${item.event_name}`,
                       description: "Check Paged Container",
                     });
                   }}
                 >
                   <EventCard
-                    title={item.title}
-                    auxText={item.desc}
-                    body={item.body}
+                    date={item.event_duration.split("T")[0]}
+                    title={item.event_name}
+                    auxText={item.event_description}
+                    body={item.event_details}
                   ></EventCard>
                 </div>
               );
@@ -128,8 +159,13 @@ export default function Events() {
   );
 }
 
-function EventCard(props: { title: string; auxText: string; body: string }) {
-  const { title, auxText, body } = props;
+function EventCard(props: {
+  title: string;
+  auxText: string;
+  body: string;
+  date: string;
+}) {
+  const { title, auxText, body, date } = props;
   return (
     <>
       <button className="flex justify-start text-start">
@@ -140,7 +176,7 @@ function EventCard(props: { title: string; auxText: string; body: string }) {
                 <h3 className="font-bold m-0">{title}</h3>
                 <h3 className="font-light text-sm m-0 ">{auxText}</h3>
               </div>
-              <div>10/30/2006</div>
+              <div>{date}</div>
             </div>
           </CardHeader>
           <CardContent>

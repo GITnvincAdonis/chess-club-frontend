@@ -3,8 +3,10 @@ import { Codesandbox } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Drawer } from "../ShadCNComponents/Drawer";
 import { useNavigate } from "react-router-dom";
+
 export default function MyNavBar() {
   const navigate = useNavigate();
+
   return (
     <>
       <div className="z-50 w-full bg-translucent backdrop-blur-md  fixed top-0">
