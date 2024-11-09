@@ -31,6 +31,7 @@ export default function ExecPage() {
   if (isError) console.log(error.message);
 
   useEffect(() => {
+    console.log(students);
     if (students) SetStudentOfficials(students);
   }, [students]);
 
@@ -48,9 +49,17 @@ export default function ExecPage() {
   if (isError2) console.log(error2.message);
 
   useEffect(() => {
+    console.log(teachers);
     if (teachers) setTeacherofficials(teachers);
   }, [teachers]);
 
+  //debugging
+  useEffect(() => {
+    console.log(studentofficials);
+  }, [studentofficials]);
+  useEffect(() => {
+    console.log(Teacherofficials);
+  }, [Teacherofficials]);
   return (
     <>
       <ScrollArea className="h-full">
