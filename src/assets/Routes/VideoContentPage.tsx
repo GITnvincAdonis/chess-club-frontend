@@ -11,8 +11,31 @@ import {
   DefaultVideoLayout,
   defaultLayoutIcons,
 } from "@vidstack/react/player/layouts/default";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useQuery } from "@tanstack/react-query";
+import { GetVideos } from "@/APIs/Api";
+import { useEffect, useState } from "react";
+
+type Video = {
+  video_title: string;
+  video_description: string;
+  video_resoruce_id: string;
+};
 
 export default function VideoContentPage() {
+  const [fetchedVideos, setVideos] = useState<Video[]>([]);
+  const { data, isError, error, isLoading } = useQuery({
+    queryFn: async () => GetVideos(),
+    queryKey: ["chess-videos"],
+  });
+
+  if (isError) console.log(error.message);
+  if (isLoading) console.log("current loading videos");
+
+  useEffect(() => {
+    if (data) setVideos(data);
+  }, [data]);
+
   return (
     <>
       <MyNavBar></MyNavBar>
@@ -26,26 +49,31 @@ export default function VideoContentPage() {
             chess
           </h3>
           <div className="flex flex-wrap justify-center">
-            {videos.map((item) => {
-              return (
-                <>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <button>
-                        {" "}
-                        <VideoContainer
-                          title={item.title}
-                          desc={item.desc}
-                        ></VideoContainer>
-                      </button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[825px]  p-0 bg-black border-none aspect-video">
-                      <VideoComponent></VideoComponent>
-                    </DialogContent>
-                  </Dialog>
-                </>
-              );
-            })}
+            {fetchedVideos.length > 0 &&
+              fetchedVideos.map((item) => {
+                return (
+                  <>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <button>
+                          {" "}
+                          <VideoContainer
+                            title={item.video_title}
+                            desc={item.video_description}
+                          ></VideoContainer>
+                        </button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-[825px]  p-0 bg-black border-none aspect-video">
+                        <VideoComponent></VideoComponent>
+                      </DialogContent>
+                    </Dialog>
+                  </>
+                );
+              })}
+            {fetchedVideos.length == 0 &&
+              Array.from({ length: 4 }).map(() => {
+                return <DefaultVideoContainer></DefaultVideoContainer>;
+              })}
           </div>
         </div>
       </div>
@@ -64,6 +92,24 @@ function VideoContainer(props: { title: string; desc: string }) {
           {title}
         </div>
         <div className="lg:text-start text-center">{desc}</div>
+      </div>
+    </div>
+  );
+}
+
+function DefaultVideoContainer() {
+  return (
+    <div className="w-[300px] mx-2 mt-7">
+      <Card className="aspect-video">
+        <CardFooter className="flex justify-between "></CardFooter>
+      </Card>
+      <div className="">
+        <div className="mt-2 text-2xl font-semibold lg:text-start text-center">
+          <Skeleton className="w-[100px] h-[20px] rounded-full" />
+        </div>
+        <div className="lg:text-start text-center">
+          <Skeleton className="w-[100px] h-[20px] rounded-full" />
+        </div>
       </div>
     </div>
   );
@@ -113,29 +159,4 @@ export function VideoComponent(props: {
     </>
   );
 }
-const videos = [
-  {
-    title: "Video one",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis voluptatum magnam ex",
-  },
-  {
-    title: "Video two",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis voluptatum magnam ex",
-  },
-  {
-    title: "Video three",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis voluptatum magnam ex",
-  },
-  {
-    title: "Video four",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis voluptatum magnam ex",
-  },
-  {
-    title: "Video five",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis voluptatum magnam ex",
-  },
-  {
-    title: "Video six",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis voluptatum magnam ex",
-  },
-];
+

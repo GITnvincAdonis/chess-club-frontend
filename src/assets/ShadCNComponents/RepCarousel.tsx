@@ -48,9 +48,9 @@ export default function RepCarousel(props: { officials: Repofficials[] }) {
         <CarouselContent>
           {officials.flat(1).map((item, index) => (
             <>
-              {console.log(item.name)}
+              {/* {console.log(item.name)}
               {console.log(item.club_position)}
-              {console.log(item.email_contact)}
+              {console.log(item.email_contact)} */}
               <CarouselItem
                 key={index}
                 className="lg:px-3  md:basis-1/2 lg:basis-1/2"
@@ -62,7 +62,7 @@ export default function RepCarousel(props: { officials: Repofficials[] }) {
                         <div className="lg:text-xl text-xs">
                           {item.club_position}
                         </div>
-                        <span className="lg:text-xl text-sm   font-semibold">
+                        <span className="lg:text-2xl text-sm   font-semibold">
                           {item.name}
                         </span>
                         <div>
