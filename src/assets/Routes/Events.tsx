@@ -14,7 +14,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useEffect, useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { useQuery } from "@tanstack/react-query";
-import { GetEvents } from "@/APIs/Api";
+import { GetEvents, GetSearchEvents } from "@/APIs/Api";
 
 type Pageditem = {
   title: string;
@@ -33,6 +33,7 @@ type Event = {
 export default function Events() {
   const [pagedEvent, setEvent] = useState<Pageditem | undefined>(undefined);
   const [fetchedEvents, SetFetchedEvents] = useState<Event[]>([]);
+  const [fetchedSearchEvents, SetSearchFetchedEvents] = useState<Event[]>([]);
 
   const { data, isLoading, isError, error } = useQuery({
     queryFn: async () => GetEvents(),
@@ -43,6 +44,32 @@ export default function Events() {
   }, [data]);
   if (isLoading) console.log("is loading events");
   if (isError) console.log(error);
+
+
+  
+  const {
+    data: data2,
+    isLoading: isLoading2,
+    isError: isError2,
+    error: error2,
+  } = useQuery({
+    queryFn: async () => GetSearchEvents("Interhouse"),
+    queryKey: ["events"],
+  });
+  useEffect(() => {
+    if (data2) {
+      SetSearchFetchedEvents(data2);
+    }
+  }, [data2]);
+
+
+  useEffect(() => {
+    console.log(fetchedSearchEvents);
+  }, [fetchedSearchEvents]);
+  
+  
+  if (isLoading2) console.log("is loading events (2)");
+  if (isError2) console.log(error2);
 
   return (
     <>
