@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import MyNavBar from "../My Components/NavBar";
 import { Input } from "@/components/ui/input";
-import { SearchIcon } from "lucide-react";
+import { CarTaxiFrontIcon, SearchIcon } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import {
@@ -130,7 +130,6 @@ export default function Events() {
               })}
 
             {fetchedSearchEvents.length > 0 &&
-              searchInput != "" &&
               fetchedSearchEvents?.map((item) => {
                 const eventParams: Pageditem = {
                   date: item.event_duration.split("T")[0],
@@ -158,6 +157,14 @@ export default function Events() {
                   </div>
                 );
               })}
+            {fetchedSearchEvents.length == 0 && searchInput != "" && (
+              <div className="w-full h-full p-5 flex flex-col justify-center items-center">
+                <CarTaxiFrontIcon size={60}></CarTaxiFrontIcon>
+                <h2 className="font-bold lg:text-3xl text-xl">
+                  No Event mathcing search
+                </h2>
+              </div>
+            )}
           </ScrollArea>
         </Card>
         <div className="basis-2/3 h-[40rem] flex flex-col lg:m-2  m-3 w-full">
