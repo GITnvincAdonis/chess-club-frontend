@@ -46,29 +46,34 @@ export default function RepCarousel(props: { officials: Repofficials[] }) {
         className="p-1 lg:w-[60rem] w-[15rem]"
       >
         <CarouselContent>
-          {officials.map((item, index) => (
-            <CarouselItem
-              key={index}
-              className="lg:px-3  md:basis-1/2 lg:basis-1/2"
-            >
-              <div className="px-1">
-                <Card>
-                  <CardContent className="flex flex-col aspect-square items-start justify-end p-6 ">
-                    <div className="">
-                      <div className="lg:text-xl text-xs">{item.club_pos}</div>
-                      <span className="lg:text-xl text-sm   font-semibold">
-                        {item.name}
-                      </span>
-                      <div>
-                        <span className="lg:text-xl text-xs">
-                          a / {item.email}
+          {officials.flat(1).map((item, index) => (
+            <>
+              {console.log(item)}
+              <CarouselItem
+                key={index}
+                className="lg:px-3  md:basis-1/2 lg:basis-1/2"
+              >
+                <div className="px-1">
+                  <Card>
+                    <CardContent className="flex flex-col aspect-square items-start justify-end p-6 ">
+                      <div className="">
+                        <div className="lg:text-xl text-xs">
+                          {item.club_pos}
+                        </div>
+                        <span className="lg:text-xl text-sm   font-semibold">
+                          {item.name}
                         </span>
+                        <div>
+                          <span className="lg:text-xl text-xs">
+                            a / {item.email}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </CarouselItem>
+                    </CardContent>
+                  </Card>
+                </div>
+              </CarouselItem>
+            </>
           ))}
         </CarouselContent>
         <CarouselPrevious />
