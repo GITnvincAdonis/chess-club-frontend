@@ -5,7 +5,12 @@ type Event = {
   event_venue: string;
   event_duration: string;
 };
-
+type Repofficials = {
+  name: string;
+  club_pos: string;
+  email: string;
+  image_cloud_id: string;
+};
 export const GetEvents = async (): Promise<Event[]> => {
   try {
     const response = await fetch(`${import.meta.env.VITE_FETCH_ROUTE}/events`);
@@ -24,6 +29,33 @@ export const GetSearchEvents = async (
   try {
     const response = await fetch(
       `${import.meta.env.VITE_FETCH_ROUTE}/events/search/${searchParam}`
+    );
+    const returnedData = response.json();
+    console.log(returnedData);
+    return returnedData;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+export const GetStudentofficials = async (): Promise<Repofficials[]> => {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_FETCH_ROUTE}/studentOfficials`
+    );
+    const returnedData = response.json();
+    console.log(returnedData);
+    return returnedData;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+export const GetTeacherOfficials = async (): Promise<Repofficials[]> => {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_FETCH_ROUTE}/teacherOfficials`
     );
     const returnedData = response.json();
     console.log(returnedData);

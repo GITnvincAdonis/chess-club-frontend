@@ -1,4 +1,3 @@
-
 import { CardDemo } from "../ShadCNComponents/CardDemo";
 import MyNavBar from "../My Components/NavBar";
 import { VideoComponent } from "./VideoContentPage";
@@ -16,7 +15,6 @@ export default function Homepage() {
             <h4 className="scroll-m-20 w-80 mb-5  text-xl font-semibold tracking-tight">
               Website built to keep students up to date with Club Activities
             </h4>{" "}
-        
           </div>
           <div className=" lg:w-[35rem] lg:h-[19.5rem]  overflow-hidden rounded-lg m-0  w-0 bg-black aspect-video ">
             <VideoComponent
@@ -64,20 +62,20 @@ const Options = [
     card_title: "Chess events",
     card_desc: "A hub for all chess club events, tounaments, etc",
     card_body:
-      "  officiis consectetur obcaecati ipsam ducimus nisi fugiat necessitatibus possimus minima voluptatem sit sequi harum quia.",
+      "  Join exciting chess events, Compete in tournaments, participate in workshops, and sharpen your skills with students and other players",
     linkString: "Events",
   },
   {
     card_title: "Executive Body",
     card_desc: "Learn the represenatives (teacher and students) of the club",
     card_body:
-      " Lorem consectetur  quidem aperiam laborumipsam ducimus nisi fugiat necessitatibus possimus minima voluptatem sit sequi harum quia.",
+      " Meet the Executive Body of our chess club—your go-to team of dedicated representatives, teachers, and student leaders. Here, you'll find contact information and profiles for each official, connecting you with those who help guide and support our club’s vision.",
     linkString: "ExecPage",
   },
   {
     card_title: "Chess Club Learning Content",
-    card_desc: "Novice member training",
+    card_desc: "member training",
     card_body:
-      " Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, officiis consectetur obcaecati voluptatibus quidem aperiam laborum consequuntur iure ipsam ducimus nisi fugiat necessitatibus possimus minima voluptatem sit sequi harum quia.",
+      " Explore our Chess Club Learning Content—your resource for mastering chess strategies, techniques, and game analysis. Dive into guides, tutorials, and expert insights, all crafted to help players of all levels enhance their skills and deepen their understanding of the game.",
   },
 ];
