@@ -57,8 +57,10 @@ export default function Events() {
     queryKey: ["events", searchInput],
   });
   useEffect(() => {
-    if (data2) {
+    if (data2 && data2?.length > 0) {
       SetSearchFetchedEvents(data2);
+    } else {
+      SetSearchFetchedEvents([]);
     }
   }, [data2]);
 
@@ -84,9 +86,9 @@ export default function Events() {
           <div className="lg:m-0 m-3 text-center">PlaceHolder Text</div>
         </Card>
 
-        <Card className="lg:basis-2/5  lg:ms-2 lg:m-0 m-3  h-[40rem]  flex flex-col items-center ">
-          <ScrollArea className="p-7">
-            <div className="flex w-full   items-center space-x-1">
+        <Card className="lg:basis-2/5  border  lg:ms-2 lg:m-0 m-3  h-[40rem]  flex flex-col items-center ">
+          <ScrollArea className="p-7 border w-full">
+            <div className="flex w-full  items-center space-x-1">
               <Input
                 onChange={(e) => {
                   SetSearchInput(e.target.value || "");
@@ -98,33 +100,65 @@ export default function Events() {
                 <SearchIcon></SearchIcon>
               </Button>
             </div>
-            {fetchedEvents?.map((item) => {
-              const eventParams: Pageditem = {
-                date: item.event_duration.split("T")[0],
-                title: item.event_name,
-                desc: item.event_description,
-                body: item.event_details,
-              };
-              return (
-                <div
-                  className=" w-full mt-3 "
-                  onClick={() => {
-                    setEvent(eventParams);
-                    toast({
-                      title: `Selected Event: ${item.event_name}`,
-                      description: "Check Paged Container",
-                    });
-                  }}
-                >
-                  <EventCard
-                    date={item.event_duration.split("T")[0]}
-                    title={item.event_name}
-                    auxText={item.event_description}
-                    body={item.event_details}
-                  ></EventCard>
-                </div>
-              );
-            })}
+            {!fetchedSearchEvents &&
+              !searchInput &&
+              fetchedEvents?.map((item) => {
+                const eventParams: Pageditem = {
+                  date: item.event_duration.split("T")[0],
+                  title: item.event_name,
+                  desc: item.event_description,
+                  body: item.event_details,
+                };
+                return (
+                  <div
+                    className=" w-full mt-3 "
+                    onClick={() => {
+                      setEvent(eventParams);
+                      toast({
+                        title: `Selected Event: ${item.event_name}`,
+                        description: "Check Paged Container",
+                      });
+                    }}
+                  >
+                    <EventCard
+                      date={item.event_duration.split("T")[0]}
+                      title={item.event_name}
+                      auxText={item.event_description}
+                      body={item.event_details}
+                    ></EventCard>
+                  </div>
+                );
+              })}
+
+            {fetchedSearchEvents &&
+              searchInput &&
+              fetchedSearchEvents?.map((item) => {
+                const eventParams: Pageditem = {
+                  date: item.event_duration.split("T")[0],
+                  title: item.event_name,
+                  desc: item.event_description,
+                  body: item.event_details,
+                };
+                return (
+                  <div
+                    className=" w-full mt-3 "
+                    onClick={() => {
+                      setEvent(eventParams);
+                      toast({
+                        title: `Selected Event: ${item.event_name}`,
+                        description: "Check Paged Container",
+                      });
+                    }}
+                  >
+                    <EventCard
+                      date={item.event_duration.split("T")[0]}
+                      title={item.event_name}
+                      auxText={item.event_description}
+                      body={item.event_details}
+                    ></EventCard>
+                  </div>
+                );
+              })}
           </ScrollArea>
         </Card>
         <div className="basis-2/3 h-[40rem] flex flex-col lg:m-2  m-3 w-full">
