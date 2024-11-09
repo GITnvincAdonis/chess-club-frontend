@@ -101,7 +101,7 @@ export default function Events() {
               </Button>
             </div>
             {!fetchedSearchEvents &&
-              !searchInput &&
+              searchInput != "" &&
               fetchedEvents?.map((item) => {
                 const eventParams: Pageditem = {
                   date: item.event_duration.split("T")[0],
