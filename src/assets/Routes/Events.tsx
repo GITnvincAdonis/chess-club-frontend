@@ -35,6 +35,8 @@ export default function Events() {
   const [fetchedEvents, SetFetchedEvents] = useState<Event[]>([]);
   const [fetchedSearchEvents, SetSearchFetchedEvents] = useState<Event[]>([]);
 
+  const [searchInput, SetSearchInput] = useState("");
+
   const { data, isLoading, isError, error } = useQuery({
     queryFn: async () => GetEvents(),
     queryKey: ["events"],
@@ -45,16 +47,14 @@ export default function Events() {
   if (isLoading) console.log("is loading events");
   if (isError) console.log(error);
 
-
-  
   const {
     data: data2,
     isLoading: isLoading2,
     isError: isError2,
     error: error2,
   } = useQuery({
-    queryFn: async () => GetSearchEvents("Interhouse"),
-    queryKey: ["events"],
+    queryFn: async () => GetSearchEvents(searchInput),
+    queryKey: ["events", searchInput],
   });
   useEffect(() => {
     if (data2) {
@@ -62,12 +62,10 @@ export default function Events() {
     }
   }, [data2]);
 
-
   useEffect(() => {
     console.log(fetchedSearchEvents);
   }, [fetchedSearchEvents]);
-  
-  
+
   if (isLoading2) console.log("is loading events (2)");
   if (isError2) console.log(error2);
 
@@ -89,7 +87,13 @@ export default function Events() {
         <Card className="lg:basis-2/5  lg:ms-2 lg:m-0 m-3  h-[40rem]  flex flex-col items-center ">
           <ScrollArea className="p-7">
             <div className="flex w-full   items-center space-x-1">
-              <Input className="m-1" placeholder="Search Events.." />
+              <Input
+                onChange={(e) => {
+                  SetSearchInput(e.target.value || "");
+                }}
+                className="m-1"
+                placeholder="Search Events.."
+              />
               <Button type="submit">
                 <SearchIcon></SearchIcon>
               </Button>
