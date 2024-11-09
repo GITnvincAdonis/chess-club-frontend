@@ -8,9 +8,10 @@ type Event = {
 
 export const GetEvents = async (): Promise<Event[]> => {
   try {
+    console.log(import.meta.env.VITE_FETCH_ROUTE);
     const response = await fetch(`${import.meta.env.VITE_FETCH_ROUTE}/events`);
     const returnedData = response.json();
-
+    console.log(returnedData);
     return returnedData;
   } catch (error) {
     console.log(error);
@@ -18,15 +19,16 @@ export const GetEvents = async (): Promise<Event[]> => {
   }
 };
 
-export const GetSearchedEvents = async (
+export const GetSearchEvents = async (
   searchParam: string
 ): Promise<Event[]> => {
   try {
+    console.log(import.meta.env.VITE_FETCH_ROUTE);
     const response = await fetch(
       `${import.meta.env.VITE_FETCH_ROUTE}/events/search/${searchParam}`
     );
     const returnedData = response.json();
-
+    console.log(returnedData);
     return returnedData;
   } catch (error) {
     console.log(error);

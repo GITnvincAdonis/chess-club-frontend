@@ -14,7 +14,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useEffect, useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { useQuery } from "@tanstack/react-query";
-import { GetEvents, GetSearchedEvents } from "@/APIs/Api";
+import { GetEvents } from "@/APIs/Api";
 
 type Pageditem = {
   title: string;
@@ -31,34 +31,18 @@ type Event = {
   event_duration: string;
 };
 export default function Events() {
-  const [input, setInput] = useState("");
   const [pagedEvent, setEvent] = useState<Pageditem | undefined>(undefined);
   const [fetchedEvents, SetFetchedEvents] = useState<Event[]>([]);
 
-  const { data, isError, error } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryFn: async () => GetEvents(),
     queryKey: ["events"],
   });
   useEffect(() => {
     if (data) SetFetchedEvents(data);
   }, [data]);
-
+  if (isLoading) console.log("is loading events");
   if (isError) console.log(error);
-
-  const {
-    data: SearchData,
-
-    isError: sErroring,
-    error: sError,
-  } = useQuery({
-    queryFn: async () => GetSearchedEvents(input),
-    queryKey: ["events", input],
-  });
-  useEffect(() => {
-    console.log(SearchData);
-  }, [SearchData]);
-
-  if (sErroring) console.log(sError);
 
   return (
     <>
@@ -78,14 +62,7 @@ export default function Events() {
         <Card className="lg:basis-2/5  lg:ms-2 lg:m-0 m-3  h-[40rem]  flex flex-col items-center ">
           <ScrollArea className="p-7">
             <div className="flex w-full   items-center space-x-1">
-              <Input
-                onChange={(e) => {
-                  console.log(e.target.value);
-                  setInput(e.target.value || "");
-                }}
-                className="m-1"
-                placeholder="Search Events.."
-              />
+              <Input className="m-1" placeholder="Search Events.." />
               <Button type="submit">
                 <SearchIcon></SearchIcon>
               </Button>
