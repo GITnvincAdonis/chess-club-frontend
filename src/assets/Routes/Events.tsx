@@ -100,8 +100,7 @@ export default function Events() {
                 <SearchIcon></SearchIcon>
               </Button>
             </div>
-            {!fetchedSearchEvents &&
-              searchInput != "" &&
+            {fetchedSearchEvents.length == 0 &&
               fetchedEvents?.map((item) => {
                 const eventParams: Pageditem = {
                   date: item.event_duration.split("T")[0],
@@ -130,8 +129,8 @@ export default function Events() {
                 );
               })}
 
-            {fetchedSearchEvents &&
-              searchInput &&
+            {fetchedSearchEvents.length > 0 &&
+              searchInput != "" &&
               fetchedSearchEvents?.map((item) => {
                 const eventParams: Pageditem = {
                   date: item.event_duration.split("T")[0],
