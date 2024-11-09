@@ -7,6 +7,7 @@ import Homepage from "./assets/Routes/Homepage";
 import ExecPage from "./assets/Routes/ExecPage";
 import Events from "./assets/Routes/Events";
 import VideoContentPage from "./assets/Routes/VideoContentPage";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             element={
               <>
                 <Events></Events>
+                <Toaster />
               </>
             }
           ></Route>
