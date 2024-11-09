@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button";
+
 import { CardDemo } from "../ShadCNComponents/CardDemo";
 import MyNavBar from "../My Components/NavBar";
+import { VideoComponent } from "./VideoContentPage";
 
 export default function Homepage() {
   return (
@@ -10,14 +11,19 @@ export default function Homepage() {
         <div className="container lg:min-h-80 min-h-60 px-5 flex lg:flex-row flex-col items-center justify-between  ">
           <div>
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-              QC ChessClub Website
+              QC ChessClub
             </h1>
             <h4 className="scroll-m-20 w-80 mb-5  text-xl font-semibold tracking-tight">
               Website built to keep students up to date with Club Activities
             </h4>{" "}
-            <Button>Buttons</Button>
+        
           </div>
-          <div className="lg:border lg:basis-1/2 lg:h-80 m-0 h-0 w-0  "></div>
+          <div className=" lg:w-[35rem] lg:h-[19.5rem]  overflow-hidden rounded-lg m-0  w-0 bg-black aspect-video ">
+            <VideoComponent
+              disableControls={true}
+              noInteract={true}
+            ></VideoComponent>
+          </div>
         </div>
         <div className="flex justify-center flex-col w-full  lg:flex-row md:items-start">
           {Options.map((item, index) => {

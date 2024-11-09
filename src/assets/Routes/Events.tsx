@@ -57,6 +57,7 @@ export default function Events() {
     queryKey: ["events", searchInput],
   });
   useEffect(() => {
+    
     if (data2 && data2?.length > 0) {
       SetSearchFetchedEvents(data2);
     } else {
@@ -82,12 +83,12 @@ export default function Events() {
         Chess Calender Events
       </h1>
       <div className="container lg:h-[40rem] flex-reverse flex mb-[3rem] lg:flex-row flex-col jusitfy-center items-center">
-        <Card className="basis-1/6 border h-[40rem] lg:me-2  px-[6rem] ">
+        <Card className="basis-1/6  h-[40rem] lg:me-2  px-[6rem] ">
           <div className="lg:m-0 m-3 text-center">PlaceHolder Text</div>
         </Card>
 
-        <Card className="lg:basis-2/5  border  lg:ms-2 lg:m-0 m-3  h-[40rem]  flex flex-col items-center ">
-          <ScrollArea className="p-7 border w-full">
+        <Card className="lg:basis-2/5    lg:ms-2 lg:m-0 m-3  h-[40rem]  flex flex-col items-center ">
+          <ScrollArea className="p-7 w-full">
             <div className="flex w-full  items-center space-x-1">
               <Input
                 onChange={(e) => {

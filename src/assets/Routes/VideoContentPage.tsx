@@ -57,7 +57,7 @@ function VideoContainer(props: { title: string; desc: string }) {
   return (
     <div className="w-[300px] mx-2 mt-7">
       <Card className="aspect-video">
-        <CardFooter className="flex justify-between"></CardFooter>
+        <CardFooter className="flex justify-between "></CardFooter>
       </Card>
       <div className="">
         <div className="mt-2 text-2xl font-semibold lg:text-start text-center">
@@ -68,21 +68,49 @@ function VideoContainer(props: { title: string; desc: string }) {
     </div>
   );
 }
-function VideoComponent() {
+export function VideoComponent(props: {
+  disableControls?: any;
+  noInteract?: any;
+}) {
+  const { disableControls, noInteract } = props;
   return (
-    <MediaPlayer
-      src="https://res.cloudinary.com/drh91o9pt/video/upload/v1730135802/y8iuviswnbl0epscimhb.mp4"
-      viewType="video"
-      streamType="on-demand"
-      logLevel="warn"
-      crossOrigin
-      playsInline
-      title="Placeholder title"
-      poster="https://files.vidstack.io/sprite-fight/poster.webp"
-    >
-      <MediaProvider></MediaProvider>
-      <DefaultVideoLayout icons={defaultLayoutIcons} />
-    </MediaPlayer>
+    <>
+      {noInteract && (
+        <MediaPlayer
+          muted
+          autoPlay
+          loop
+          className="border-inherit "
+          src="https://res.cloudinary.com/drh91o9pt/video/upload/v1730135802/y8iuviswnbl0epscimhb.mp4"
+          streamType="on-demand"
+          logLevel="warn"
+          crossOrigin
+          title="Placeholder title"
+          poster="https://files.vidstack.io/sprite-fight/poster.webp"
+        >
+          <MediaProvider className="border-inherit"></MediaProvider>
+          {!disableControls && (
+            <DefaultVideoLayout icons={defaultLayoutIcons} />
+          )}
+        </MediaPlayer>
+      )}
+      {!noInteract && (
+        <MediaPlayer
+          className="border-inherit "
+          src="https://res.cloudinary.com/drh91o9pt/video/upload/v1730135802/y8iuviswnbl0epscimhb.mp4"
+          streamType="on-demand"
+          logLevel="warn"
+          crossOrigin
+          title="Placeholder title"
+          poster="https://files.vidstack.io/sprite-fight/poster.webp"
+        >
+          <MediaProvider className="border-inherit"></MediaProvider>
+          {!disableControls && (
+            <DefaultVideoLayout icons={defaultLayoutIcons} />
+          )}
+        </MediaPlayer>
+      )}
+    </>
   );
 }
 const videos = [
