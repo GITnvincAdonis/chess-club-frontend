@@ -13,8 +13,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 type Repofficials = {
   name: string;
-  club_pos: string;
-  email: string;
+  club_position: string;
+  email_contact: string;
   image_cloud_id: string;
 };
 export default function RepCarousel(props: { officials: Repofficials[] }) {
@@ -48,7 +48,9 @@ export default function RepCarousel(props: { officials: Repofficials[] }) {
         <CarouselContent>
           {officials.flat(1).map((item, index) => (
             <>
-              {console.log(item)}
+              {console.log(item.name)}
+              {console.log(item.club_position)}
+              {console.log(item.email_contact)}
               <CarouselItem
                 key={index}
                 className="lg:px-3  md:basis-1/2 lg:basis-1/2"
@@ -58,14 +60,14 @@ export default function RepCarousel(props: { officials: Repofficials[] }) {
                     <CardContent className="flex flex-col aspect-square items-start justify-end p-6 ">
                       <div className="">
                         <div className="lg:text-xl text-xs">
-                          {item.club_pos}
+                          {item.club_position}
                         </div>
                         <span className="lg:text-xl text-sm   font-semibold">
                           {item.name}
                         </span>
                         <div>
                           <span className="lg:text-xl text-xs">
-                            a / {item.email}
+                            a / {item.email_contact}
                           </span>
                         </div>
                       </div>

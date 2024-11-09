@@ -9,8 +9,8 @@ import { GetStudentofficials, GetTeacherOfficials } from "@/APIs/Api";
 
 type Repofficials = {
   name: string;
-  club_pos: string;
-  email: string;
+  club_position: string;
+  email_contact: string;
   image_cloud_id: string;
 };
 
