@@ -167,11 +167,14 @@ export default function Events() {
                   </h2>
                 </div>
               )}
-            {eventLoadState && (
-              <div className=" w-full mt-3">
-                <DefaultEventCard></DefaultEventCard>
-              </div>
-            )}
+            {eventLoadState &&
+              Array.from({ length: 3 }).map(() => {
+                return (
+                  <div className=" w-full mt-3 ">
+                    <DefaultEventCard></DefaultEventCard>
+                  </div>
+                );
+              })}
           </ScrollArea>
         </Card>
         <div className="basis-2/3 h-[40rem] flex flex-col lg:m-2  m-3 w-full">
@@ -249,16 +252,16 @@ function EventCard(props: {
 function DefaultEventCard() {
   return (
     <>
-      <button className="flex justify-start text-start">
-        <Card>
+      <button className="flex justify-start text-start w-full">
+        <Card className="w-full">
           <CardHeader>
-            <div className="flex justify-between">
-              <div>
+            <div className="flex justify-between ">
+              <div className="space-y-1">
                 <h3 className="font-bold m-0">
                   <Skeleton className="w-[200px] h-[20px] rounded-full" />
                 </h3>
                 <h3 className="font-light text-sm m-0 ">
-                  <Skeleton className="w-[200px] h-[20px] rounded-full" />
+                  <Skeleton className="w-[200px] h-[10px] rounded-full" />
                 </h3>
               </div>
               <div>
@@ -266,10 +269,10 @@ function DefaultEventCard() {
               </div>
             </div>
           </CardHeader>
-          <CardContent className="flex flex-col">
-            <Skeleton className="w-[50px] h-[20px] rounded-full" />
-            <Skeleton className="w-[50px] h-[20px] rounded-full" />
-            <Skeleton className="w-[50px] h-[20px] rounded-full" />
+          <CardContent className="flex flex-col space-y-2 ">
+            <Skeleton className="w-[250px] h-[20px] rounded-full" />
+            <Skeleton className="lg:w-[350px] h-[20px] rounded-full" />
+            <Skeleton className="w-[130px] h-[20px] rounded-full" />
           </CardContent>
           <CardFooter className="space-x-2">
             <Badge>recreational</Badge>
