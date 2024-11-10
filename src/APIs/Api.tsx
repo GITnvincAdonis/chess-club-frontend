@@ -1,6 +1,7 @@
 type Event = {
   event_name: string;
   event_description: string;
+  event_display_description: string;
   event_details: string;
   event_venue: string;
   event_duration: string;

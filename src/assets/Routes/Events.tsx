@@ -27,6 +27,7 @@ type Pageditem = {
 type Event = {
   event_name: string;
   event_description: string;
+  event_display_description: string;
   event_details: string;
   event_venue: string;
   event_duration: string;
@@ -41,6 +42,7 @@ export default function Events() {
   const { data, isLoading, isError, error } = useQuery({
     queryFn: async () => GetEvents(),
     queryKey: ["events"],
+    staleTime: Infinity,
   });
   useEffect(() => {
     if (data) SetFetchedEvents(data);
@@ -56,6 +58,7 @@ export default function Events() {
   } = useQuery({
     queryFn: async () => GetSearchEvents(searchInput),
     queryKey: ["events", searchInput],
+    staleTime: Infinity,
   });
   useEffect(() => {
     if (data2 && data2?.length > 0) {
@@ -109,8 +112,8 @@ export default function Events() {
                 const eventParams: Pageditem = {
                   date: item.event_duration.split("T")[0],
                   title: item.event_name,
-                  desc: item.event_description,
-                  body: item.event_details,
+                  desc: item.event_details,
+                  body: item.event_description,
                 };
                 return (
                   <div
@@ -126,8 +129,8 @@ export default function Events() {
                     <EventCard
                       date={item.event_duration.split("T")[0]}
                       title={item.event_name}
-                      auxText={item.event_description}
-                      body={item.event_details}
+                      auxText={item.event_details}
+                      body={item.event_display_description}
                     ></EventCard>
                   </div>
                 );
@@ -155,8 +158,8 @@ export default function Events() {
                     <EventCard
                       date={item.event_duration.split("T")[0]}
                       title={item.event_name}
-                      auxText={item.event_description}
-                      body={item.event_details}
+                      auxText={item.event_details}
+                      body={item.event_display_description}
                     ></EventCard>
                   </div>
                 );
