@@ -11,7 +11,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { useQuery } from "@tanstack/react-query";
 import { GetEvents, GetSearchEvents } from "@/APIs/Api";
@@ -24,10 +24,21 @@ type Pageditem = {
   body: string;
   date: string;
 };
-
+type Event = {
+  event_name: string;
+  event_description: string;
+  event_display_description: string;
+  event_details: string;
+  event_venue: string;
+  event_duration: string;
+};
 export default function Events() {
   const [pagedEvent, setEvent] = useState<Pageditem | undefined>(undefined);
-  const [searchInput, SetSearchInput] = useState(".");
+  const [searchInput, SetSearchInput] = useState("");
+
+  const [fetchedSearchEvents, setSEvents] = useState<Event[] | undefined>(
+    undefined
+  );
 
   const {
     data: fetchedEvents,
@@ -42,20 +53,25 @@ export default function Events() {
 
   if (isLoading) console.log("is loading events");
   if (isError) console.log(error);
+  if (searchInput != "") {
+    const {
+      data: fetchedSearchEvents,
+      isLoading: isLoading2,
+      isError: isError2,
+      error: error2,
+    } = useQuery({
+      queryFn: async () => GetSearchEvents(searchInput),
+      queryKey: ["events", searchInput],
+      staleTime: Infinity,
+    });
 
-  const {
-    data: fetchedSearchEvents,
-    isLoading: isLoading2,
-    isError: isError2,
-    error: error2,
-  } = useQuery({
-    queryFn: async () => GetSearchEvents(searchInput),
-    queryKey: ["events", searchInput],
-    staleTime: Infinity,
-  });
-
-  if (isLoading2) console.log("is loading events (2)");
-  if (isError2) console.log(error2);
+    if (isLoading2) console.log("is loading events (2)");
+    if (isError2) console.log(error2);
+    useEffect(() => {
+      if (fetchedSearchEvents) setSEvents(fetchedSearchEvents);
+      else setSEvents([]);
+    }, [fetchedSearchEvents]);
+  }
 
   return (
     <>
@@ -79,7 +95,7 @@ export default function Events() {
             <div className="flex w-full  items-center space-x-1">
               <Input
                 onChange={(e) => {
-                  SetSearchInput(e.target.value || ".");
+                  SetSearchInput(e.target.value || "");
                 }}
                 className="m-1"
                 placeholder="Search Events.."
@@ -157,7 +173,7 @@ export default function Events() {
                   </h2>
                 </div>
               )}
-            {(!fetchedSearchEvents) && (
+            {!fetchedSearchEvents && (
               <div className=" w-full mt-3">
                 <DefaultEventCard></DefaultEventCard>
               </div>
