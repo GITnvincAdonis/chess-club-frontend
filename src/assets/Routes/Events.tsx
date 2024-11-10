@@ -29,11 +29,10 @@ export default function Events() {
   const [pagedEvent, setEvent] = useState<Pageditem | undefined>(undefined);
   const [searchInput, SetSearchInput] = useState("");
 
-  const [shouldDisplayDefault, SetDisplayDefaults] = useState(false);
+  const [shouldDisplayDefault, SetDisplayDefaults] = useState(true);
 
   const {
     data: fetchedEvents,
-    isLoading,
     isError,
     error,
     isFetched: InitFectched,
@@ -57,12 +56,25 @@ export default function Events() {
   if (isError2) console.log(error2);
 
   useEffect(() => {
-    if (isLoading || isLoading2) SetDisplayDefaults(true);
-  }, [isLoading, isLoading2]);
+    if (isLoading2) {
+      console.log("search events loading");
+      SetDisplayDefaults(true);
+    }
+  }, [isLoading2]);
 
   useEffect(() => {
-    if (InitFectched && SearchFetched) SetDisplayDefaults(false);
-  }, [InitFectched, SearchFetched]);
+    if (SearchFetched) {
+      console.log("resolved search fetch");
+      SetDisplayDefaults(false);
+    }
+  }, [SearchFetched]);
+
+  useEffect(() => {
+    if (InitFectched) {
+      console.log("resolved initial fetch");
+      SetDisplayDefaults(false);
+    }
+  }, [InitFectched]);
 
   return (
     <>
