@@ -141,8 +141,8 @@ export default function Events() {
                 const eventParams: Pageditem = {
                   date: item.event_duration.split("T")[0],
                   title: item.event_name,
-                  desc: item.event_description,
-                  body: item.event_details,
+                  desc: item.event_details,
+                  body: item.event_description,
                 };
                 return (
                   <div
