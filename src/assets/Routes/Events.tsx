@@ -27,7 +27,7 @@ type Pageditem = {
 
 export default function Events() {
   const [pagedEvent, setEvent] = useState<Pageditem | undefined>(undefined);
-  const [searchInput, SetSearchInput] = useState("a");
+  const [searchInput, SetSearchInput] = useState(".");
 
   const {
     data: fetchedEvents,
@@ -79,7 +79,7 @@ export default function Events() {
             <div className="flex w-full  items-center space-x-1">
               <Input
                 onChange={(e) => {
-                  SetSearchInput(e.target.value || "a");
+                  SetSearchInput(e.target.value || ".");
                 }}
                 className="m-1"
                 placeholder="Search Events.."
