@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ChevronRight, TvIcon } from "lucide-react";
+import { ChevronLeft, TvIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export function HomepageModal() {
@@ -17,7 +17,8 @@ export function HomepageModal() {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="default">
-          <ChevronRight /> navigate to
+          navigate to
+          <ChevronLeft />
         </Button>
       </DialogTrigger>
       <DialogContent>

@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { useQuery } from "@tanstack/react-query";
 import { GetEvents, GetSearchEvents } from "@/APIs/Api";
+import { EventCalender } from "../ShadCNComponents/EventCalender";
 
 type Pageditem = {
   title: string;
@@ -57,7 +58,6 @@ export default function Events() {
     queryKey: ["events", searchInput],
   });
   useEffect(() => {
-    
     if (data2 && data2?.length > 0) {
       SetSearchFetchedEvents(data2);
     } else {
@@ -83,8 +83,10 @@ export default function Events() {
         Chess Calender Events
       </h1>
       <div className="container lg:h-[40rem] flex-reverse flex mb-[3rem] lg:flex-row flex-col jusitfy-center items-center">
-        <Card className="basis-1/6  h-[40rem] lg:me-2  px-[6rem] ">
-          <div className="lg:m-0 m-3 text-center">PlaceHolder Text</div>
+        <Card className="basis-1/6  h-[40rem] lg:me-2  ">
+          <div className="lg:m-0 m-3 text-center">
+            <EventCalender></EventCalender>
+          </div>
         </Card>
 
         <Card className="lg:basis-2/5    lg:ms-2 lg:m-0 m-3  h-[40rem]  flex flex-col items-center ">

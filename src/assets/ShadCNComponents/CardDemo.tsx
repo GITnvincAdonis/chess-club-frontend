@@ -46,7 +46,8 @@ export function CardDemo(props: {
         {index && <HomepageModal></HomepageModal>}
         {!index && (
           <Button onClick={() => [navigate(`/${navigation_link}`)]}>
-            <ChevronLeft /> Navigate
+            Navigate
+            <ChevronLeft />
           </Button>
         )}
       </CardFooter>
