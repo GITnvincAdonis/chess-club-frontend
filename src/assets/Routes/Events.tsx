@@ -28,13 +28,15 @@ type Pageditem = {
 export default function Events() {
   const [pagedEvent, setEvent] = useState<Pageditem | undefined>(undefined);
   const [searchInput, SetSearchInput] = useState("");
-  const [anyLoading, SetLoading] = useState(true);
+
+  const [shouldDisplayDefault, SetDisplayDefaults] = useState(false);
 
   const {
     data: fetchedEvents,
     isLoading,
     isError,
     error,
+    isFetched: InitFectched,
   } = useQuery({
     queryFn: async () => GetEvents(),
     queryKey: ["events"],
@@ -45,6 +47,7 @@ export default function Events() {
     isLoading: isLoading2,
     isError: isError2,
     error: error2,
+    isFetched: SearchFetched,
   } = useQuery({
     queryFn: async () => GetSearchEvents(searchInput),
     queryKey: ["events", searchInput],
@@ -54,9 +57,12 @@ export default function Events() {
   if (isError2) console.log(error2);
 
   useEffect(() => {
-    if (isLoading || isLoading2) SetLoading(true);
-    else SetLoading(false);
+    if (isLoading || isLoading2) SetDisplayDefaults(true);
   }, [isLoading, isLoading2]);
+
+  useEffect(() => {
+    if (InitFectched && SearchFetched) SetDisplayDefaults(false);
+  }, [InitFectched, SearchFetched]);
 
   return (
     <>
@@ -148,16 +154,18 @@ export default function Events() {
                   </div>
                 );
               })}
-            {!fetchedSearchEvents && searchInput != "" && !anyLoading && (
-              <div className="w-full h-full p-5 flex flex-col justify-center items-center">
-                <CarTaxiFrontIcon size={60}></CarTaxiFrontIcon>
-                <h2 className="font-bold lg:text-3xl text-xl">
-                  No Event mathcing search
-                </h2>
-              </div>
-            )}
+            {!fetchedSearchEvents &&
+              searchInput != "" &&
+              !shouldDisplayDefault && (
+                <div className="w-full h-full p-5 flex flex-col justify-center items-center">
+                  <CarTaxiFrontIcon size={60}></CarTaxiFrontIcon>
+                  <h2 className="font-bold lg:text-3xl text-xl">
+                    No Event mathcing search
+                  </h2>
+                </div>
+              )}
 
-            {anyLoading &&
+            {shouldDisplayDefault &&
               Array.from({ length: 4 }).map(() => {
                 return (
                   <div className=" w-full mt-3 ">
