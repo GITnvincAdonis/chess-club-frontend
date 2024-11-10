@@ -1,8 +1,7 @@
-import { Codesandbox } from "lucide-react";
-
 import { Switch } from "@/components/ui/switch";
 import { Drawer } from "../ShadCNComponents/Drawer";
 import { useNavigate } from "react-router-dom";
+import QCLOGO from "@/SVGS/QCLOGO";
 
 export default function MyNavBar() {
   const navigate = useNavigate();
@@ -15,9 +14,9 @@ export default function MyNavBar() {
             onClick={() => {
               navigate("/");
             }}
-            className="flex flex-row"
+            className="flex flex-row space-x-2"
           >
-            <Codesandbox></Codesandbox>
+            <QCLOGO size={30}></QCLOGO>
             <h2 className="text-xl"> Queens College</h2>
           </div>
 
