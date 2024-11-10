@@ -11,7 +11,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import {  useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { useQuery } from "@tanstack/react-query";
 import { GetEvents, GetSearchEvents } from "@/APIs/Api";
@@ -29,13 +29,14 @@ export default function Events() {
   const [pagedEvent, setEvent] = useState<Pageditem | undefined>(undefined);
   const [searchInput, SetSearchInput] = useState("");
 
-
+  const [eventLoadState, ToggleEventLoadState] = useState(true);
 
   const {
     data: fetchedEvents,
     isLoading,
     isError,
     error,
+    isFetched: isFetched1,
   } = useQuery({
     queryFn: async () => GetEvents(),
     queryKey: ["events"],
@@ -49,18 +50,23 @@ export default function Events() {
     isLoading: isLoading2,
     isError: isError2,
     error: error2,
+    isFetched: isFetched2,
   } = useQuery({
     queryFn: async () => GetSearchEvents(searchInput),
     queryKey: ["events", searchInput],
     staleTime: Infinity,
     enabled: searchInput !== "", // Only fetch when searchInput is not empty
   });
-  
+
   if (isLoading2) console.log("is loading events (2)");
   if (isError2) console.log(error2);
-  
- 
 
+  useEffect(() => {
+    if (isLoading2 || isLoading) ToggleEventLoadState(true);
+  }, [isLoading2, isLoading]);
+  useEffect(() => {
+    if (isFetched1 || isFetched2) ToggleEventLoadState(false);
+  }, [isFetched1, isFetched2]);
   return (
     <>
       <MyNavBar></MyNavBar>
@@ -161,7 +167,7 @@ export default function Events() {
                   </h2>
                 </div>
               )}
-            {!fetchedSearchEvents && (
+            {eventLoadState && (
               <div className=" w-full mt-3">
                 <DefaultEventCard></DefaultEventCard>
               </div>
