@@ -19,8 +19,8 @@ export function Drawer() {
     <div className="grid  lg:grid-cols-2 gap-2">
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="outline" size="icon">
-            <MenuIcon></MenuIcon>
+          <Button className="bg-translucent" variant="default" size="icon">
+            <MenuIcon className=""></MenuIcon>
           </Button>
         </SheetTrigger>
         <SheetContent side={"right"}>

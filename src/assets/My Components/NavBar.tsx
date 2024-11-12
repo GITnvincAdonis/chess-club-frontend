@@ -8,7 +8,7 @@ export default function MyNavBar() {
 
   return (
     <>
-      <div className="z-50 w-full bg-translucent backdrop-blur-md  fixed top-0">
+      <div className="z-50 w-full bg-QCMotif backdrop-blur-md  fixed top-0">
         <div className=" container my-5 px-5 flex justify-between ">
           <div
             onClick={() => {
@@ -21,7 +21,7 @@ export default function MyNavBar() {
           </div>
 
           <div className="flex justify-center items-center">
-            <Switch />
+            <Switch  />
             <div className="ms-3">
               <Drawer></Drawer>
             </div>

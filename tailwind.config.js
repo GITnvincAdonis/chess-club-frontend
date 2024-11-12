@@ -55,6 +55,10 @@ export default {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
+			  QCMotif: {
+				DEFAULT: '#ffd105e8',
+				foreground: 'hsl(var(--QCMotif-foreground))'
+			},
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',

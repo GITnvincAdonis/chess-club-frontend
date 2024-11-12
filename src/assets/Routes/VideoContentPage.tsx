@@ -71,7 +71,7 @@ export default function VideoContentPage() {
                 );
               })}
             {fetchedVideos.length == 0 &&
-              Array.from({ length: 4 }).map(() => {
+              Array.from({ length: 9 }).map(() => {
                 return <DefaultVideoContainer></DefaultVideoContainer>;
               })}
           </div>
