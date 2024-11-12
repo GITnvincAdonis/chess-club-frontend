@@ -81,7 +81,10 @@ export default function Events() {
         <Card className="basis-1/6  h-[40rem] lg:me-2  ">
           <div className="lg:m-0 m-3 text-center">
             {fetchedEvents && (
-              <EventCalender FetchedEvents={fetchedEvents}></EventCalender>
+              <EventCalender
+                FetchedEvents={fetchedEvents}
+                setPagedEvent={setEvent}
+              ></EventCalender>
             )}
           </div>
         </Card>

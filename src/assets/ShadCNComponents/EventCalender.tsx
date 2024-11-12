@@ -10,13 +10,17 @@ type Event = {
   event_duration: string;
 };
 
+
 function createUTCDate(dateString: string) {
   const [year, month, day] = dateString.split("T")[0].split("-").map(Number);
   return new Date(Date.UTC(year, month - 1, day + 1));
 }
 
-export function EventCalender(props: { FetchedEvents: Event[] }) {
-  const { FetchedEvents } = props;
+export function EventCalender(props: {
+  FetchedEvents: Event[];
+  setPagedEvent: CallableFunction;
+}) {
+  const { FetchedEvents, setPagedEvent } = props;
   console.log(FetchedEvents);
   const [selected, setSelected] = useState<Date[]>([]);
 
@@ -33,25 +37,24 @@ export function EventCalender(props: { FetchedEvents: Event[] }) {
         mode="multiple"
         selected={selected}
         onDayClick={(day) => {
-          if (
-            selected.find((item) => item.toDateString() === day.toDateString())
-          ) {
+          let conditonMatched = selected.find(
+            (item) => item.toDateString() === day.toDateString()
+          );
+          if (conditonMatched) {
             const eventMatched = FetchedEvents.find(
               (item) =>
                 createUTCDate(item.event_duration).toDateString() ===
                 day.toDateString()
             );
-            const fistEventDate = createUTCDate(
-              FetchedEvents[0].event_duration
-            ).toDateString();
-            console.log("first event date");
-            console.log(fistEventDate);
 
-            console.log("debugging event matched");
-            console.log(eventMatched);
-
-            console.log("Clicked day value");
-            console.log(day.toDateString());
+            eventMatched
+              ? setPagedEvent({
+                  date: eventMatched.event_duration.split("T")[0],
+                  title: eventMatched.event_name,
+                  desc: eventMatched.event_details,
+                  body: eventMatched.event_description,
+                })
+              : setPagedEvent(undefined);
           }
         }}
       />
