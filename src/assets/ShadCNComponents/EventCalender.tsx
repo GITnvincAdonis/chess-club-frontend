@@ -9,24 +9,24 @@ type Event = {
   event_venue: string;
   event_duration: string;
 };
+
+function createUTCDate(dateString: string) {
+  const [year, month, day] = dateString.split("T")[0].split("-").map(Number);
+  return new Date(Date.UTC(year, month - 1, day));
+}
+
 export function EventCalender(props: { FetchedEvents: Event[] }) {
   const { FetchedEvents } = props;
   console.log(FetchedEvents);
-  const [selected, setSelected] = useState<Date[]>([
-    new Date(2024, 10, 5), // Example preexisting date
-    new Date(2024, 10, 12), // Another example date
-  ]);
+  const [selected, setSelected] = useState<Date[]>([]);
 
-  //const eventDates = FetchedEvents.map((item) => new Date(item.event_duration));
-  //setSelected((prevSelected) => [...prevSelected, ...eventDates]);
   useEffect(() => {
-    const eventDates = FetchedEvents.map(
-      (item) => new Date(item.event_duration)
+    const eventDates = FetchedEvents.map((item) =>
+      createUTCDate(item.event_duration)
     );
     setSelected((prev) => [...prev, ...eventDates]);
   }, [FetchedEvents]);
 
-  
   return (
     <div className="flex flex-col">
       <Calendar
