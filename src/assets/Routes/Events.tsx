@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import MyNavBar from "../My Components/NavBar";
 import { Input } from "@/components/ui/input";
 import { CarTaxiFrontIcon, SearchIcon } from "lucide-react";
-
+import { Calendar } from "@/components/ui/calendar";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -86,6 +86,7 @@ export default function Events() {
                 setPagedEvent={setEvent}
               ></EventCalender>
             )}
+            {!fetchedEvents && <Calendar></Calendar>}
           </div>
         </Card>
 

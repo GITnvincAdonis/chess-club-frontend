@@ -1,4 +1,5 @@
 import { Calendar } from "@/components/ui/calendar";
+import { toast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
 
 type Event = {
@@ -9,7 +10,6 @@ type Event = {
   event_venue: string;
   event_duration: string;
 };
-
 
 function createUTCDate(dateString: string) {
   const [year, month, day] = dateString.split("T")[0].split("-").map(Number);
@@ -47,14 +47,18 @@ export function EventCalender(props: {
                 day.toDateString()
             );
 
-            eventMatched
-              ? setPagedEvent({
-                  date: eventMatched.event_duration.split("T")[0],
-                  title: eventMatched.event_name,
-                  desc: eventMatched.event_details,
-                  body: eventMatched.event_description,
-                })
-              : setPagedEvent(undefined);
+            if (eventMatched) {
+              setPagedEvent({
+                date: eventMatched.event_duration.split("T")[0],
+                title: eventMatched.event_name,
+                desc: eventMatched.event_details,
+                body: eventMatched.event_description,
+              });
+              toast({
+                title: `Selected Event: ${eventMatched.event_name}`,
+                description: "Check Paged Container",
+              });
+            }
           }
         }}
       />
