@@ -37,9 +37,20 @@ export function EventCalender(props: { FetchedEvents: Event[] }) {
             selected.find((item) => item.toDateString() === day.toDateString())
           ) {
             const eventMatched = FetchedEvents.find(
-              (item) => createUTCDate(item.event_duration) === day
+              (item) =>
+                createUTCDate(item.event_duration).toDateString() ===
+                day.toDateString()
             );
+            const fistEventDate = createUTCDate(
+              FetchedEvents[0].event_duration
+            ).toDateString();
+            console.log("first event date");
+            console.log(fistEventDate);
+
+            console.log("debugging event matched");
             console.log(eventMatched);
+
+            console.log("Clicked day value");
             console.log(day.toDateString());
           }
         }}
