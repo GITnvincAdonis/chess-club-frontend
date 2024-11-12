@@ -17,8 +17,8 @@ export function EventCalender(props: { FetchedEvents: Event[] }) {
   ]);
 
 
-  const eventDates = FetchedEvents.map((item) => new Date(item.event_duration));
-  setSelected((prevSelected) => [...prevSelected, ...eventDates]);
+  //const eventDates = FetchedEvents.map((item) => new Date(item.event_duration));
+  //setSelected((prevSelected) => [...prevSelected, ...eventDates]);
 
   return (
     <div className="flex flex-col">
