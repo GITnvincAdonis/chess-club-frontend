@@ -80,7 +80,9 @@ export default function Events() {
       <div className="container lg:h-[40rem] flex-reverse flex mb-[3rem] lg:flex-row flex-col jusitfy-center items-center">
         <Card className="basis-1/6  h-[40rem] lg:me-2  ">
           <div className="lg:m-0 m-3 text-center">
-            <EventCalender></EventCalender>
+            {fetchedEvents && (
+              <EventCalender FetchedEvents={fetchedEvents}></EventCalender>
+            )}
           </div>
         </Card>
 
