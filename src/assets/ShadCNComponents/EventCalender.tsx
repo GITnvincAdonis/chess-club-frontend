@@ -1,5 +1,5 @@
 import { Calendar } from "@/components/ui/calendar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Event = {
   event_name: string;
@@ -9,17 +9,24 @@ type Event = {
   event_venue: string;
   event_duration: string;
 };
-export function EventCalender(props: { FetchedEvents?: Event[] }) {
+export function EventCalender(props: { FetchedEvents: Event[] }) {
   const { FetchedEvents } = props;
   console.log(FetchedEvents);
-  const [selected, _setSelected] = useState<Date[]>([
+  const [selected, setSelected] = useState<Date[]>([
     new Date(2024, 10, 5), // Example preexisting date
     new Date(2024, 10, 12), // Another example date
   ]);
 
   //const eventDates = FetchedEvents.map((item) => new Date(item.event_duration));
   //setSelected((prevSelected) => [...prevSelected, ...eventDates]);
+  useEffect(() => {
+    const eventDates = FetchedEvents.map(
+      (item) => new Date(item.event_duration)
+    );
+    setSelected((prev) => [...prev, ...eventDates]);
+  }, [FetchedEvents]);
 
+  
   return (
     <div className="flex flex-col">
       <Calendar
