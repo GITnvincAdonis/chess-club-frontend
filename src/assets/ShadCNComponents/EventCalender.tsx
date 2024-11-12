@@ -36,6 +36,10 @@ export function EventCalender(props: { FetchedEvents: Event[] }) {
           if (
             selected.find((item) => item.toDateString() === day.toDateString())
           ) {
+            const eventMatched = FetchedEvents.find(
+              (item) => createUTCDate(item.event_duration) === day
+            );
+            console.log(eventMatched);
             console.log(day.toDateString());
           }
         }}
