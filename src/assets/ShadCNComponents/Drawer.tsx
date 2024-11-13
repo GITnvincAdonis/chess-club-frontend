@@ -58,6 +58,15 @@ export function Drawer() {
               >
                 Event page
               </Button>
+              <Button
+                onClick={() => {
+                  navigate("/HOF");
+                }}
+                variant="outline"
+                className={"w-full my-1"}
+              >
+                Hall of Famers
+              </Button>
 
               <SheetClose asChild>
                 <Button className={"w-full"} type="submit">

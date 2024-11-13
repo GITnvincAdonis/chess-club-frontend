@@ -9,6 +9,7 @@ import Events from "./assets/Routes/Events";
 import VideoContentPage from "./assets/Routes/VideoContentPage";
 import { Toaster } from "./components/ui/toaster";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import HOF from "./assets/Routes/HallOfFame";
 
 const Client = new QueryClient();
 function App() {
@@ -47,6 +48,14 @@ function App() {
               element={
                 <>
                   <VideoContentPage></VideoContentPage>
+                </>
+              }
+            ></Route>
+            <Route
+              path={"/HOF"}
+              element={
+                <>
+                  <HOF></HOF>
                 </>
               }
             ></Route>

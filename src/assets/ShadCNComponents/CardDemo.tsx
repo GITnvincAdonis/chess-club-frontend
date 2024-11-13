@@ -20,6 +20,7 @@ export function CardDemo(props: {
   className?: any;
   index?: number;
   navigation_link?: string;
+  icon: any;
 }) {
   const {
     className,
@@ -28,14 +29,23 @@ export function CardDemo(props: {
     card_desc,
     index,
     navigation_link,
+    icon,
   } = props;
 
   const navigate = useNavigate();
   return (
-    <Card className={cn("w-[380px]", className)}>
-      <CardHeader>
-        <CardTitle>{card_title}</CardTitle>
-        <CardDescription>{card_desc}</CardDescription>
+    <Card
+      className={cn(
+        "w-[380px], border-[.3rem] drop-shadow-xl border-dashed",
+        className
+      )}
+    >
+      <div className="flex justify-end w-full h-0 float-right ">{icon}</div>
+      <CardHeader className="">
+        <div>
+          <CardTitle>{card_title}</CardTitle>
+          <CardDescription className="max-w-[80%]">{card_desc}</CardDescription>
+        </div>
       </CardHeader>
       <CardContent className="grid gap-4">
         <div className=" flex items-center space-x-4 rounded-md border p-4">

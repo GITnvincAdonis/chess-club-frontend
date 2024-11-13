@@ -1,4 +1,4 @@
-import { Card, CardFooter } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import MyNavBar from "../My Components/NavBar";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import "@vidstack/react/player/styles/base.css";
@@ -39,8 +39,8 @@ export default function VideoContentPage() {
   return (
     <>
       <MyNavBar></MyNavBar>
-      <div className="h-screen flex items-center justify-center">
-        <div className="w-[70rem] h-full mt-[10rem]">
+      <div className="min-h-screen flex items-center justify-center mb-10">
+        <div className="w-[70rem] h-full mt-[10rem]  ">
           <h1 className="text-4xl font-bold text-center">
             Beginner Chess Videos
           </h1>
@@ -83,9 +83,11 @@ export default function VideoContentPage() {
 function VideoContainer(props: { title: string; desc: string }) {
   const { title, desc } = props;
   return (
-    <div className="w-[300px] mx-2 mt-7">
-      <Card className="aspect-video">
-        <CardFooter className="flex justify-between "></CardFooter>
+    <div className="w-[300px] lg:min-h-[17rem] mx-2 mt-7">
+      <Card className="aspect-video overflow-hidden">
+        <div className="border h-full w-full">
+          <img src="https://res.cloudinary.com/drh91o9pt/image/upload/v1731460143/default_image_szc7fk.png" />
+        </div>
       </Card>
       <div className="">
         <div className="mt-2 text-2xl font-semibold lg:text-start text-center">
@@ -99,13 +101,11 @@ function VideoContainer(props: { title: string; desc: string }) {
 
 function DefaultVideoContainer() {
   return (
-    <div className="w-[300px] mx-2 mt-7">
-      <Card className="aspect-video">
-        <CardFooter className="flex justify-between "></CardFooter>
-      </Card>
-      <div className="">
+    <div className="w-[300px] lg:min-h-[17rem]   mx-2 mt-7">
+      <Card className="aspect-video "></Card>
+      <div className="space-y-1">
         <div className="mt-2 text-2xl font-semibold lg:text-start text-center">
-          <Skeleton className="w-[100px] h-[20px] rounded-full" />
+          <Skeleton className="w-[200px] h-[20px] rounded-full" />
         </div>
         <div className="lg:text-start text-center">
           <Skeleton className="w-[100px] h-[20px] rounded-full" />
@@ -159,4 +159,3 @@ export function VideoComponent(props: {
     </>
   );
 }
-

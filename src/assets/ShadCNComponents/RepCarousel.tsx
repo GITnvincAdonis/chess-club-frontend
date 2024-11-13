@@ -55,8 +55,11 @@ export default function RepCarousel(props: { officials: Repofficials[] }) {
                 key={index}
                 className="lg:px-3  md:basis-1/2 lg:basis-1/2"
               >
-                <div className="px-1">
-                  <Card>
+                <div className="p-8">
+                  <Card className="drop-shadow-xl overflow-hidden border-dashed border-2">
+                    <div className="h-0">
+                      <img src="https://res.cloudinary.com/drh91o9pt/image/upload/v1731460031/default-profile-picture1_emnyvl.jpg"></img>
+                    </div>
                     <CardContent className="flex flex-col aspect-square items-start justify-end p-6 ">
                       <div className="">
                         <div className="lg:text-xl text-xs">
@@ -116,10 +119,10 @@ export function DefaultOfficialCarousel() {
           {Array.from({ length: 5 }).map((_item, index) => (
             <CarouselItem
               key={index}
-              className="lg:px-3  md:basis-1/2 lg:basis-1/2"
+              className="lg:px-3 md:basis-1/2 lg:basis-1/2"
             >
-              <div className="px-1">
-                <Card>
+              <div className="p-8">
+                <Card className="drop-shadow-xl border-dashed border-2">
                   <CardContent className="flex flex-col aspect-square items-start justify-end p-6 ">
                     <div className="">
                       <div className="lg:text-xl text-xs my-1">

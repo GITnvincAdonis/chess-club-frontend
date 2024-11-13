@@ -64,7 +64,7 @@ export default function ExecPage() {
     <>
       <ScrollArea className="h-full">
         <MyNavBar></MyNavBar>
-        <div className=" mt-[6rem] flex flex-col justify-center w-full items-center">
+        <div className=" mt-[10rem] min-h-screen flex flex-col justify-center w-full items-center">
           <div className=" flex flex-col items-center  lg:pb-[6rem] pb-[2rem]">
             <h1 className="lg:text-5xl text-2xl font-bold lg:text-start text-center">
               QC Representatives
@@ -75,7 +75,7 @@ export default function ExecPage() {
           </div>
           <div className="mt-2 flex flex-col mb-[5rem] ">
             <div className=" mx-[5rem]">
-              <h3 className="ps-3 lg:text-2xl font-semibold  text-center">
+              <h3 className="ps-3 lg:text-3xl font-bold  text-center">
                 Student Representatives
               </h3>
               {studentofficials.length > 0 && (
@@ -86,8 +86,8 @@ export default function ExecPage() {
               )}
             </div>
             <div className="mx-[5rem] p-0 lg:mt-[5rem] mt-[2rem]">
-              <h3 className="ps p-0-3 lg:text-2xl font-semibold text-center">
-                teacher Represenatives
+              <h3 className="ps p-0-3 lg:text-3xl font-bold text-center">
+                Teacher Represenatives
               </h3>
               {Teacherofficials.length > 0 && (
                 <RepCarousel officials={Teacherofficials}></RepCarousel>
