@@ -4,8 +4,10 @@ import { VideoComponent } from "./VideoContentPage";
 import QCLOGO from "@/SVGS/QCLOGO";
 import { Blocks, CalendarCheck2, Crown, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useMediaQuery } from "react-responsive";
 
 export default function Homepage() {
+  const isOnDesk = useMediaQuery({ minWidth: 1024 });
   return (
     <>
       <MyNavBar></MyNavBar>
@@ -30,11 +32,13 @@ export default function Homepage() {
             </div>
           </div>
 
-          <div className=" lg:w-[35rem] lg:h-[19.5rem]  overflow-hidden rounded-lg m-0  w-0 bg-black aspect-video ">
-            <VideoComponent
-              disableControls={true}
-              noInteract={true}
-            ></VideoComponent>
+          <div className=" lg:w-[35rem] lg:h-[19.5rem]  overflow-hidden rounded-lg bg-black aspect-video ">
+            {isOnDesk && (
+              <VideoComponent
+                disableControls={true}
+                noInteract={true}
+              ></VideoComponent>
+            )}
           </div>
         </div>
         <div className="flex  justify-center flex-col w-fit flex-wrap lg:flex-row md:items-start">
